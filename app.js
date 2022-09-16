@@ -100,7 +100,7 @@ productSchema.pre('save', function (next) {
 //     next()
 // })
 
-productSchema.methods.logger = function(){
+productSchema.methods.logger = function () {
     console.log(`Data saved for ${this.name}`);
 }
 
@@ -142,6 +142,26 @@ app.post('/api/v1/product', async (req, res) => {
     }
     // console.log(req.body);
     // console.log("hello");
+})
+
+app.get('/api/v1/product', async (req, res, next) => {
+
+    try {
+        // const products = await Product.where("name").equals(/\w/).where("quantity").gt(100).limit(2) ;
+
+        const product = await Product.findById("6322a98892ccf613df82290a");
+
+        res.status(200).json({
+            status: "success",
+            data: product
+        })
+    } catch (error) {
+        res.status(400).json({
+            status: "fail",
+            message: "can't get the data",
+            error: error.message
+        })
+    }
 })
 
 module.exports = app;
