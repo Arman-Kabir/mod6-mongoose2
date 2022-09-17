@@ -91,9 +91,7 @@ productSchema.pre('save', function (next) {
 //     next()
 // })
 
-productSchema.methods.logger = function () {
-    console.log(`Data saved for ${this.name}`);
-}
+
 
 // Schema -> Model -> Query
 // Model creation

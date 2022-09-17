@@ -1,11 +1,15 @@
-const Product = require('../models/Product');
+const { getProductsService, createProductService } = require("../services/product.services");
+
+// productSchema.methods.logger = function () {
+//     console.log(`Data saved for ${this.name}`);
+// }
 
 exports.getProducts =  async (req, res, next) => {
 
     try {
         // const products = await Product.where("name").equals(/\w/).where("quantity").gt(100).limit(2) ;
 
-        const product = await Product.find({});
+        const product = await getProductsService();
 
         res.status(200).json({
             status: "success",
@@ -24,14 +28,14 @@ exports.createProduct =  async (req, res) => {
 
     try {
         // to store in db --- save or create
-        // const result = await Product.create(req.body);
-        const product = new Product(req.body)
+        const result = await createProductService(req.body);
+        // const product = new Product(req.body);
         // instance creation -> Do Something -> save()
         // if (product.quantity == 0) {
         //     product.status = 'out-of-stock'
         // }
-        const result = await product.save();
-        result.logger();
+        // const result = await product.save();
+        // result.logger();
         res.status(200).json({
             status: 'Success',
             message: 'Data inserted successfully',
