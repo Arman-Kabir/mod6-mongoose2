@@ -5,7 +5,7 @@ exports.getProducts =  async (req, res, next) => {
     try {
         // const products = await Product.where("name").equals(/\w/).where("quantity").gt(100).limit(2) ;
 
-        const product = await Product.findById("6322a98892ccf613df82290a");
+        const product = await Product.find({});
 
         res.status(200).json({
             status: "success",
